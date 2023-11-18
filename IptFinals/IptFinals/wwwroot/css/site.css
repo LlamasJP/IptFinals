@@ -1,0 +1,63 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.login-logout-card .card-header{
+    padding: 0px 0px 12px 0px;
+}
+
+.login-logout-card ul.nav-tabs {
+    margin: 0px 0px -12px 0px;
+}
+
+.login-logout-card li.nav-item {
+    width: 50%;
+}
+
+.login-logout-card a.nav-link {
+    font-size: 1rem;
+    color: #495057;
+    text-align: center;
+    padding: 1rem;
+}
+
+.login-logout-card .card-body {
+    padding: 10px 20px;
+}
+
+.maindashboard {
+    padding: 0 0 10px 0;
+    position: center;
+    display: inline-grid ;
+    width: 100%;
+    grid-template-columns: 20% 1fr;
+
+   /* border: 1px solid black;*/
+}
+    .maindashboard .list-group {
+      /*  border: 1px solid black;*/
+        width: 100%;
+        text-align: center;
+        padding: 0 0 0 0;
+        /*height: 60%;*/
+
+    }

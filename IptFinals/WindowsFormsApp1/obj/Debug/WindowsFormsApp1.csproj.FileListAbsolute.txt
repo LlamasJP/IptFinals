@@ -1,0 +1,9 @@
+C:\Users\Llamas Fam\Desktop\IptFinals\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\Llamas Fam\Desktop\IptFinals\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\Llamas Fam\Desktop\IptFinals\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\Llamas Fam\Desktop\IptFinals\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+C:\Users\Llamas Fam\Desktop\IptFinals\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\Llamas Fam\Desktop\IptFinals\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+C:\Users\Llamas Fam\Desktop\IptFinals\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\Llamas Fam\Desktop\IptFinals\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\Llamas Fam\Desktop\IptFinals\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
