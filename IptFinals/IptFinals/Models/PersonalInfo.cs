@@ -12,12 +12,12 @@ namespace IptFinals.Models
     {
         [Key]
         [Display(Name = "PersonalId")]
-        [StringLength(450)]
+        //[StringLength(450)]
         public string PersonalId { get; set; }
 
 
         [Display(Name = "UserId")]
-        [StringLength(450)]
+        //[StringLength(450)]
         public string UserId { get; set; }
 
 
@@ -43,6 +43,8 @@ namespace IptFinals.Models
         //[StringLength(450)]
 
 
+        [StringLength(11, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 11)]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Not a number")]
         [Display(Name = "ContactNumber")]
         public string ContactNumber { get; set; }
         //[StringLength(450)]
@@ -61,8 +63,6 @@ namespace IptFinals.Models
         [Display(Name = "EmergencyContact")]
         public string EmergencyContact { get; set; }
         //[StringLength(450)]
-
-
     }
 }
 

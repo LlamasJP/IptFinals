@@ -8,10 +8,20 @@
 <h1>Add New Student</h1>
 <h2>Personal Information</h2>
 <hr />
+
+@* <p>User Id : @ViewData["UserID"]</p> *@
 <form asp-action="Create">
     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-    <p>User Id : @ViewData["UserID"]</p>
+    <div class="form-floating mb-3">
+        <input asp-for="UserId" class="form-control" placeholder="" value="@ViewData["UserID"]" hidden/>
+        <label asp-for="UserId" class="form-label"></label>
+            </div>
     <div class="row">
+        <div class="form-floating mb-3">
+            <input asp-for="PersonalId" class="form-control" placeholder="Student Id." />
+            <label asp-for="PersonalId" class="form-label">Studen-Id (Format: 00-0000)</label>
+        </div>
+        <div class="row">
         <div class="col-6">
             <div class="form-floating mb-3">
                 <input asp-for="FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
@@ -51,7 +61,7 @@
     <div class="row">
         <div class="col-6">
             <div class="form-floating mb-3">
-                <input asp-for="ContactNumber" class="form-control" autocomplete="contactnumber" aria-required="true" placeholder="Contact Number" />
+                    <input asp-for="ContactNumber" class="form-control" autocomplete="contactnumber" aria-required="true" placeholder="Contact Number" type="number" />
                 <label asp-for="ContactNumber">Contact Number</label>
                 <span asp-validation-for="ContactNumber" class="text-danger"></span>
             </div>
@@ -76,7 +86,7 @@
     </div>
 
 
-    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Submit</button>
 
 </form>
 @* @section Scripts {

@@ -11,21 +11,22 @@ using AspNetCore.ReportingServices.ReportProcessing.ReportObjectModel;
 using IptFinals.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using IptFinals.Migrations;
+using System.Security.Claims;
 
 namespace IptFinals.Controllers
 {
     public class PersonalInfoController : Controller
     {
-        private readonly ILogger<PersonalInfoController> _logger;
+        //private readonly ILogger<PersonalInfoController> _logger;
         private readonly UserManager<IptUser> _userManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        //private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IptDbContext _context;
 
-        public PersonalInfoController(IptDbContext context, ILogger<PersonalInfoController> logger, UserManager<IptUser> userManager, IWebHostEnvironment webHostEnvironment)
+        public PersonalInfoController(IptDbContext context, UserManager<IptUser> userManager) //* ILogger<PersonalInfoController> logger,*, IWebHostEnvironment webHostEnvironment)
         {
-            _logger = logger;
+            //_logger = logger;
             this._userManager = userManager;
-            _webHostEnvironment = webHostEnvironment;
+            //_webHostEnvironment = webHostEnvironment;
             _context = context;
         }
         //public PersonalInfoController(IptDbContext context)
@@ -44,24 +45,45 @@ namespace IptFinals.Controllers
         // GET: PersonalInfo/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null || _context.PersonalInfo == null)
+            if (User.IsInRole("Manager"))
             {
-                return NotFound();
-            }
+                if (id == null || _context.PersonalInfo == null)
+                {
+                    return NotFound();
+                }
 
-            var personalInfo = await _context.PersonalInfo
-                .FirstOrDefaultAsync(m => m.FirstName == id);
-            if (personalInfo == null)
+                var personalInfo = await _context.PersonalInfo
+                    .FirstOrDefaultAsync(m => m.FirstName == id);
+                if (personalInfo == null)
+                {
+                    return NotFound();
+                }
+                return View(personalInfo);
+            } 
+            else
             {
-                return NotFound();
-            }
+                var personalInfo = await _context.PersonalInfo
+                   .FirstOrDefaultAsync(m => m.UserId == id);
 
-            return View(personalInfo);
+                return View(personalInfo);
+            }    
         }
+        //[HttpGet]
+        //[Route("Users/current")]
+        //public async Task<IActionResult> CurrentUser()
+        //{
+        //    string id = HttpContext.User.FindFirstValue("UserId");
+        //    //ViewData["UserID"] = id;
 
+        //    return Ok(new { UserId = id });
+        //}
         // GET: PersonalInfo/Create
+        //[HttpGet]
+        //[Route("Users/current")]
         public IActionResult Create()
         {
+            //string id = HttpContext.User.FindFirstValue(CurrentUser);
+            //ViewData["UserID"] = id;
             ViewData["UserID"] = _userManager.GetUserId(this.User);
             return View();
         }
@@ -71,12 +93,12 @@ namespace IptFinals.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonalId,UserId,FirstName,LastName,Section,Course,YearLevel,Address,DateOfBirth,ContactNumber,EmergencyContact")] PersonalInfo personalInfo)
+        public async Task<IActionResult> Create([Bind("PersonalId,UserId,FirstName,LastName,Section,Course,YearLevel,ContactNumber,DateOfBirth,Address,EmergencyContact")] PersonalInfo personalInfo)
         {
-            var CurrentUser = _userManager.GetUserId(this.User);
+            //var CurrentUser = _userManager.GetUserId(this.User);
             if (ModelState.IsValid)
             {
-                personalInfo.UserId = CurrentUser;
+                //personalInfo.UserId = CurrentUser;
 
                 _context.Add(personalInfo);
                 await _context.SaveChangesAsync();

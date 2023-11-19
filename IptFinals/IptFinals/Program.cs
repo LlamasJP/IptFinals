@@ -7,6 +7,7 @@ namespace IptFinals.Controllers
 { 
     public class Program
     {
+       
         public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -26,9 +27,17 @@ namespace IptFinals.Controllers
             {
                 options.Password.RequireUppercase = false;
             });
+            //CreateHostBuilder(args).Build().Run();
 
+             IHostBuilder CreateHostBuilder(string[] args) =>
+               Host.CreateDefaultBuilder(args)
+               .ConfigureWebHostDefaults(webBuilder =>
+               {
+                   webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
+                   webBuilder.UseWebRoot("wwwroot");
+               });
             var app = builder.Build();
-
+           
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

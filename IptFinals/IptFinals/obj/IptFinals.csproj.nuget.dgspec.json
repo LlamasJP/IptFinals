@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Llamas Fam\\Desktop\\IptFinals\\IptFinals\\IptFinals.csproj": {}
+    "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\IptFinals.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Llamas Fam\\Desktop\\IptFinals\\IptFinals\\IptFinals.csproj": {
+    "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\IptFinals.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Llamas Fam\\Desktop\\IptFinals\\IptFinals\\IptFinals.csproj",
+        "projectUniqueName": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\IptFinals.csproj",
         "projectName": "IptFinals",
-        "projectPath": "C:\\Users\\Llamas Fam\\Desktop\\IptFinals\\IptFinals\\IptFinals.csproj",
+        "projectPath": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\IptFinals.csproj",
         "packagesPath": "C:\\Users\\Llamas Fam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Llamas Fam\\Desktop\\IptFinals\\IptFinals\\obj\\",
+        "outputPath": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -77,7 +77,11 @@
             },
             "System.CodeDom": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[8.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
             }
           },
           "imports": [
