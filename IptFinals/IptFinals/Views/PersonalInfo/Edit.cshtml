@@ -1,71 +1,186 @@
-﻿@model IptFinals.Models.PersonalInfo
+﻿@using IptFinals.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+@model IptFinals.Models.PersonalInfo
 
+@inject SignInManager<IptUser> SignInManager
+@inject UserManager<IptUser> UserManager
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_SidebarLayout.cshtml";
 }
 
-<h1>Edit</h1>
+@if (User.IsInRole("Manager"))
+    {
+    <h1>Edit</h1>
 
-<h4>PersonalInfo</h4>
-<hr />
+    <h4>PersonalInfo</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="UserId" />
+                <input type="hidden" asp-for="PersonalId" />
+               
+                <div class="form-group">
+                    <label asp-for="StudentId" class="control-label"></label>
+                    <input asp-for="StudentId" class="form-control" />
+                    <span asp-validation-for="StudentId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Section" class="control-label"></label>
+                    <input asp-for="Section" class="form-control" />
+                    <span asp-validation-for="Section" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Course" class="control-label"></label>
+                    <input asp-for="Course" class="form-control" />
+                    <span asp-validation-for="Course" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="YearLevel" class="control-label"></label>
+                    <input asp-for="YearLevel" class="form-control" />
+                    <span asp-validation-for="YearLevel" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateOfBirth" class="control-label"></label>
+                    <input asp-for="DateOfBirth" class="form-control" />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ContactNumber" class="control-label"></label>
+                    <input asp-for="ContactNumber" class="form-control" />
+                    <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmergencyContact" class="control-label"></label>
+                    <input asp-for="EmergencyContact" class="form-control" />
+                    <span asp-validation-for="EmergencyContact" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
+else
+{
+    <h1>Edit</h1>
+
+    <h4>PersonalInfo</h4>
+    <hr />
+
+     <form asp-action="Edit">
+<div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+<div class="form-floating mb-3">
+    <input asp-for="UserId" class="form-control" placeholder="" value="@Model.UserId"  hidden/>
+    @* <label asp-for="UserId" class="form-label"></label> *@
+</div>
+        <div class="form-floating mb-3">
+            <input asp-for="PersonalId" class="form-control" placeholder="" value="@Model.PersonalId" hidden />
+          @*   <label asp-for="PersonalId" class="form-label"></label> *@
+        </div>
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="FirstName" />
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+            <div class="form-floating mb-3">
+                <input asp-for="StudentId" class="form-control" placeholder="Student Id." value="@Model.StudentId" />
+                <label asp-for="StudentId" class="form-label">Student-Id (Format: 00-0000)</label>
             </div>
-            <div class="form-group">
-                <label asp-for="Section" class="control-label"></label>
-                <input asp-for="Section" class="form-control" />
-                <span asp-validation-for="Section" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Course" class="control-label"></label>
-                <input asp-for="Course" class="form-control" />
-                <span asp-validation-for="Course" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="YearLevel" class="control-label"></label>
-                <input asp-for="YearLevel" class="form-control" />
-                <span asp-validation-for="YearLevel" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" class="form-control" />
-                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContactNumber" class="control-label"></label>
-                <input asp-for="ContactNumber" class="form-control" />
-                <span asp-validation-for="ContactNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmergencyContact" class="control-label"></label>
-                <input asp-for="EmergencyContact" class="form-control" />
-                <span asp-validation-for="EmergencyContact" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="form-floating mb-3">
+            <input asp-for="FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" value="@Model.FirstName"  />
+            <label asp-for="FirstName">First Name</label>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-floating mb-3">
+            <input asp-for="LastName" class="form-control" autocomplete="lastname" aria-required="true" placeholder="Last name" value="@Model.LastName"  />
+            <label asp-for="LastName">Last Name</label>
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="row">
+    <div class="col-sm">
+        <div class="form-floating mb-3">
+            <input asp-for="Section" class="form-control" autocomplete="section" aria-required="true" placeholder="BSIT" value="@Model.Section" />
+            <label asp-for="Section">Section</label>
+            <span asp-validation-for="Section" class="text-danger"></span>
+        </div>
+    </div><div class="col-sm">
+        <div class="form-floating mb-3">
+            <input asp-for="Course" class="form-control" autocomplete="course" aria-required="true" placeholder="Course" value="@Model.Course"  />
+            <label asp-for="Course">Course</label>
+            <span asp-validation-for="Course" class="text-danger"></span>
+        </div>
+    </div><div class="col-sm">
+        <div class="form-floating mb-3">
+            <input asp-for="YearLevel" class="form-control" autocomplete="yearlevel" aria-required="true" placeholder="Year Level" value="@Model.YearLevel" />
+            <label asp-for="YearLevel">Year Level</label>
+            <span asp-validation-for="YearLevel" class="text-danger"></span>
+        </div>
+    </div>
 </div>
-
-@* @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<div class="row">
+    <div class="col-6">
+        <div class="form-floating mb-3">
+            <input asp-for="ContactNumber" class="form-control" autocomplete="contactnumber" aria-required="true" placeholder="Contact Number" type="number" value="@Model.ContactNumber" />
+            <label asp-for="ContactNumber">Contact Number</label>
+            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-floating mb-3">
+            <input asp-for="DateOfBirth" class="form-control" autocomplete="dateofbirth" aria-required="true" placeholder="Date Of Birth" value="@Model.DateOfBirth"/>
+            <label asp-for="DateOfBirth">Date of Birth</label>
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-floating mb-3">
+    <input asp-for="Address" class="form-control" autocomplete="address" aria-required="true" placeholder="Address" value="@Model.Address" />
+    <label asp-for="Address">Address</label>
+    <span asp-validation-for="Address" class="text-danger"></span>
+</div>
+<div class="form-floating mb-3">
+    <input asp-for="EmergencyContact" class="form-control" autocomplete="emergencycontact" aria-required="true" placeholder="Emergency Contact" value="@Model.EmergencyContact" />
+    <label asp-for="EmergencyContact">Emergency Contact</label>
+    <span asp-validation-for="EmergencyContact" class="text-danger"></span>
+</div>
+        <input type="submit" value="Save" class="btn btn-primary" />
+       
+        <a href="/PersonalInfo/Details/@ViewData["UserID"]">Back to Details</a>
+    </form>
+   
 }
- *@
+
+@* @if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        }
+    </script>
+} *@

@@ -1,5 +1,96 @@
-﻿@{
+﻿@model IptFinals.Models.PersonalInfo
+
+@{
     ViewData["Title"] = "Log in";
     Layout = "~/Views/Shared/_SidebarLayout.cshtml";
 }
-<p>User Id : @ViewData["UserID"]</p> 
+@* <p>User Id : @ViewData["UserID"]</p> *@
+
+@if (User.IsInRole("Manager"))
+{
+ 
+    <form method="post" action="Identifications">
+        <input type="submit" />
+    </form>
+}
+else
+{
+ 
+    <form method="post" asp-action="Identifications" asp-controller="Home"> 
+
+        <div class="row">
+            <div class="form-floating mb-3">
+                <input asp-for="StudentId" class="form-control" placeholder="StudentId" name="studentid" />
+                <label asp-for="StudentId" class="form-label">Student-Id (Format: 00-0000)</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input asp-for="FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" name="firstname"  />
+                    <label asp-for="FirstName">First Name</label>
+
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input asp-for="LastName" class="form-control" autocomplete="lastname" aria-required="true" placeholder="Last name" name="lastname"  />
+                    <label asp-for="LastName">Last Name</label>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-floating mb-3">
+                    <input asp-for="Section" class="form-control" autocomplete="section" aria-required="true" placeholder="BSIT" name="section"  />
+                    <label asp-for="Section">Section</label>
+
+                </div>
+            </div><div class="col-sm">
+                <div class="form-floating mb-3">
+                    <input asp-for="Course" class="form-control" autocomplete="course" aria-required="true" placeholder="Course" name="course"  />
+                    <label asp-for="Course">Course</label>
+
+                </div>
+            </div><div class="col-sm">
+                <div class="form-floating mb-3">
+                    <input asp-for="YearLevel" class="form-control" autocomplete="yearlevel" aria-required="true" placeholder="Year Level" name="yearlevel"  />
+                    <label asp-for="YearLevel">Year Level</label>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input asp-for="ContactNumber" class="form-control" autocomplete="contactnumber" aria-required="true" placeholder="Contact Number" type="number" name="contactnumber"  />
+                    <label asp-for="ContactNumber">Contact Number</label>
+
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input asp-for="DateOfBirth" class="form-control" autocomplete="dateofbirth" aria-required="true" placeholder="Date Of Birth" name="dateofbirth" />
+                    <label asp-for="DateOfBirth">Date of Birth</label>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="Address" class="form-control" autocomplete="address" aria-required="true" placeholder="Address" name="address"  />
+            <label asp-for="Address">Address</label>
+
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="EmergencyContact" class="form-control" autocomplete="emergencycontact" aria-required="true" placeholder="Emergency Contact" name="emergencycontact" />
+            <label asp-for="EmergencyContact">Emergency Contact</label>
+        </div>
+
+        <input type="submit" />
+    </form>
+
+}
+
+
+

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PUORJw7olpiv25xEpeK6e0nw0I03gQ5I7/1BsQv3xGA=",
+  "Hash": "eo3PHMb49g2ka3k1DyxaEj/Iz3mE0mQXoMLHRH4CH24=",
   "Source": "IptFinals",
   "BasePath": "_content/IptFinals",
   "Mode": "Default",
@@ -1103,6 +1103,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\wwwroot\\images\\ID Template Design Back.png",
+      "SourceId": "IptFinals",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\wwwroot\\",
+      "BasePath": "_content/IptFinals",
+      "RelativePath": "images/ID Template Design Back.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\ID Template Design Back.png"
+    },
+    {
+      "Identity": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\wwwroot\\images\\ID Template Design Front.png",
+      "SourceId": "IptFinals",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\wwwroot\\",
+      "BasePath": "_content/IptFinals",
+      "RelativePath": "images/ID Template Design Front.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\ID Template Design Front.png"
     },
     {
       "Identity": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\wwwroot\\js\\site.js",

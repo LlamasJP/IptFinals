@@ -609,7 +609,6 @@
             </TablixRowHierarchy>
             <DataSetName>dsStudentPersonalInfo</DataSetName>
             <Top>0.16542in</Top>
-            <Left>1.30083in</Left>
             <Height>0.5in</Height>
             <Width>6.02083in</Width>
             <Style>
@@ -647,7 +646,7 @@
               </Paragraphs>
               <rd:DefaultName>prm3</rd:DefaultName>
               <Height>0.25in</Height>
-              <Width>8.47792in</Width>
+              <Width>6.72792in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -677,7 +676,7 @@
               <rd:DefaultName>prm1</rd:DefaultName>
               <Top>0.35292in</Top>
               <Height>0.25in</Height>
-              <Width>8.47792in</Width>
+              <Width>6.72792in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -701,14 +700,14 @@
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>prm2</rd:DefaultName>
-              <Top>0.78in</Top>
+              <Top>0.76611in</Top>
               <Height>0.25in</Height>
-              <Width>8.47792in</Width>
+              <Width>6.72792in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>

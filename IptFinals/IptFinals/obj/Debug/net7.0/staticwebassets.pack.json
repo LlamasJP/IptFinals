@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\wwwroot\\images\\ID Template Design Back.png",
+      "PackagePath": "staticwebassets\\images\\ID Template Design Back.png"
+    },
+    {
+      "Id": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\wwwroot\\images\\ID Template Design Front.png",
+      "PackagePath": "staticwebassets\\images\\ID Template Design Front.png"
+    },
+    {
       "Id": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

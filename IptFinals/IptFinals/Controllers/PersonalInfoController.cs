@@ -12,29 +12,35 @@ using IptFinals.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using IptFinals.Migrations;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using AspNetCore.Reporting;
+using Microsoft.AspNetCore.Hosting;
+using System.Data;
+using System.Data.SqlClient;
+using AspNetCore.Reporting.ReportExecutionService;
 
 namespace IptFinals.Controllers
 {
     public class PersonalInfoController : Controller
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
         //private readonly ILogger<PersonalInfoController> _logger;
         private readonly UserManager<IptUser> _userManager;
-        //private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IptDbContext _context;
 
-        public PersonalInfoController(IptDbContext context, UserManager<IptUser> userManager) //* ILogger<PersonalInfoController> logger,*, IWebHostEnvironment webHostEnvironment)
+        string constr = "Data Source=DESKTOP-FAE0OA1; Initial Catalog=IptFinalsDB;User ID=sa; Password=123456789";
+
+        public PersonalInfo personalinfo = new PersonalInfo();
+
+        public PersonalInfoController(IptDbContext context, UserManager<IptUser> userManager, IWebHostEnvironment webHostEnvironment) //* ILogger<PersonalInfoController> logger,*, IWebHostEnvironment webHostEnvironment)
         {
             //_logger = logger;
             this._userManager = userManager;
-            //_webHostEnvironment = webHostEnvironment;
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
-        //public PersonalInfoController(IptDbContext context)
-        //{
-        //    _context = context;
-        //}
 
-        // GET: PersonalInfo
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> Index()
         {
               return _context.PersonalInfo != null ? 
@@ -45,61 +51,49 @@ namespace IptFinals.Controllers
         // GET: PersonalInfo/Details/5
         public async Task<IActionResult> Details(string id)
         {
+           
             if (User.IsInRole("Manager"))
             {
                 if (id == null || _context.PersonalInfo == null)
                 {
-                    return NotFound();
+                    return NotFound("no user");
                 }
 
                 var personalInfo = await _context.PersonalInfo
-                    .FirstOrDefaultAsync(m => m.FirstName == id);
+                    .FirstOrDefaultAsync(m => m.PersonalId == id);
                 if (personalInfo == null)
                 {
-                    return NotFound();
+                    return NotFound("Hello");
                 }
                 return View(personalInfo);
             } 
             else
             {
+                ViewData["UserID"] = _userManager.GetUserId(this.User);
                 var personalInfo = await _context.PersonalInfo
                    .FirstOrDefaultAsync(m => m.UserId == id);
-
+                if (personalInfo == null)
+                {
+                    return RedirectToAction("Create", "PersonalInfo");
+                }
+                else
                 return View(personalInfo);
             }    
         }
-        //[HttpGet]
-        //[Route("Users/current")]
-        //public async Task<IActionResult> CurrentUser()
-        //{
-        //    string id = HttpContext.User.FindFirstValue("UserId");
-        //    //ViewData["UserID"] = id;
-
-        //    return Ok(new { UserId = id });
-        //}
-        // GET: PersonalInfo/Create
-        //[HttpGet]
-        //[Route("Users/current")]
         public IActionResult Create()
         {
-            //string id = HttpContext.User.FindFirstValue(CurrentUser);
-            //ViewData["UserID"] = id;
+
             ViewData["UserID"] = _userManager.GetUserId(this.User);
             return View();
         }
 
-        // POST: PersonalInfo/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+   
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonalId,UserId,FirstName,LastName,Section,Course,YearLevel,ContactNumber,DateOfBirth,Address,EmergencyContact")] PersonalInfo personalInfo)
+        public async Task<IActionResult> Create([Bind("PersonalId,,StudentId,UserId,FirstName,LastName,Section,Course,YearLevel,ContactNumber,DateOfBirth,Address,EmergencyContact")] PersonalInfo personalInfo)
         {
-            //var CurrentUser = _userManager.GetUserId(this.User);
-            if (ModelState.IsValid)
+             if (ModelState.IsValid)
             {
-                //personalInfo.UserId = CurrentUser;
-
                 _context.Add(personalInfo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -107,53 +101,108 @@ namespace IptFinals.Controllers
             return View(personalInfo);
         }
 
-        // GET: PersonalInfo/Edit/5
+
+
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null || _context.PersonalInfo == null)
+
+            if (User.IsInRole("Manager")) {
+                if (id == null || _context.PersonalInfo == null)
+                {
+                    return NotFound("No UserId");
+                }
+
+                var personalInfo = await _context.PersonalInfo.FindAsync(id);
+                if (personalInfo == null)
+                {
+                    return NotFound("no user");
+                }
+                return View(personalInfo);
+            }
+            else
             {
-                return NotFound();
+                ViewData["UserID"] = _userManager.GetUserId(this.User);
+                if (id == null || _context.PersonalInfo == null)
+                {
+                    return NotFound("No UserId");
+                }
+
+                var personalInfo = await _context.PersonalInfo.FindAsync(id);
+                if (personalInfo == null)
+                {
+                    return NotFound("no user");
+                }
+                return View(personalInfo);
             }
 
-            var personalInfo = await _context.PersonalInfo.FindAsync(id);
-            if (personalInfo == null)
-            {
-                return NotFound();
-            }
-            return View(personalInfo);
+            
         }
 
-        // POST: PersonalInfo/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("FirstName,LastName,Section,Course,YearLevel,Address,DateOfBirth,ContactNumber,EmergencyContact")] PersonalInfo personalInfo)
+        public async Task<IActionResult> Edit(string id, [Bind("StudentId,PersonalId,UserId,FirstName,LastName,Section,Course,YearLevel,Address,DateOfBirth,ContactNumber,EmergencyContact")] PersonalInfo personalInfo)
         {
-            if (id != personalInfo.PersonalId)
+            
+            if (User.IsInRole("Manager"))
             {
-                return NotFound();
-            }
+                if (id != personalInfo.PersonalId)
+                {
+                    return NotFound("No user");
+                }
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(personalInfo);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!PersonalInfoExists(personalInfo.PersonalId))
+                        {
+                            return NotFound("Success");
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+                }
+            } 
+            else
+            {
 
-            if (ModelState.IsValid)
-            {
-                try
+                ViewData["UserID"] = _userManager.GetUserId(this.User);
+                if (id != personalInfo.PersonalId)
                 {
-                    _context.Update(personalInfo);
-                    await _context.SaveChangesAsync();
+                    return NotFound("No user");
                 }
-                catch (DbUpdateConcurrencyException)
+
+                if (ModelState.IsValid)
                 {
-                    if (!PersonalInfoExists(personalInfo.PersonalId))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(personalInfo);
+                        await _context.SaveChangesAsync();
+                       
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!PersonalInfoExists(personalInfo.PersonalId))
+                        {
+                            return NotFound("Success");
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
+                    //ViewBag.Message = "Successfully Change";
+                    return RedirectToAction(nameof(Edit));
+                    
                 }
-                return RedirectToAction(nameof(Index));
             }
             return View(personalInfo);
         }
@@ -167,7 +216,7 @@ namespace IptFinals.Controllers
             }
 
             var personalInfo = await _context.PersonalInfo
-                .FirstOrDefaultAsync(m => m.FirstName == id);
+                .FirstOrDefaultAsync(m => m.PersonalId == id);
             if (personalInfo == null)
             {
                 return NotFound();
@@ -197,7 +246,7 @@ namespace IptFinals.Controllers
 
         private bool PersonalInfoExists(string id)
         {
-          return (_context.PersonalInfo?.Any(e => e.FirstName == id)).GetValueOrDefault();
+          return (_context.PersonalInfo?.Any(e => e.PersonalId == id)).GetValueOrDefault();
         }
     }
 }

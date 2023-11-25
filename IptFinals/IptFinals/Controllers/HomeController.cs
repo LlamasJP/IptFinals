@@ -1,11 +1,17 @@
 ﻿using IptFinals.Areas.Identity.Data;
+using IptFinals.Data;
 using IptFinals.Migrations;
 using IptFinals.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Diagnostics;
+using System.Data.SqlClient;
+using AspNetCore.Reporting;
+using IptFinals.ViewModels;
+using System.Security.Claims;
 
 namespace IptFinals.Controllers
 {
@@ -16,55 +22,79 @@ namespace IptFinals.Controllers
         private readonly UserManager<IptUser> _userManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly UserManager<PersonalInfo> _userManager1;
+        private readonly IptDbContext _context;
 
-        public  Identification identification=new Identification();
+        public IdentificationModel identification = new IdentificationModel();
 
-        public HomeController(ILogger<HomeController> logger, UserManager<IptUser> userManager, IWebHostEnvironment webHostEnvironment)
+        public HomeController(ILogger<HomeController> logger, UserManager<IptUser> userManager, IWebHostEnvironment webHostEnvironment, IptDbContext context)
         {
             _logger = logger;
             this._userManager = userManager;
-            _webHostEnvironment = webHostEnvironment;
+            this._webHostEnvironment = webHostEnvironment;
+            _context = context;
+
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
 
         public IActionResult Index()
         {
             ViewData["UserID"] = _userManager.GetUserId(this.User);
-            //var UserID = _userManager1.GetUserId(HttpContext.User);
-            //PersonalInfo personalinfo = _userManager1.FindByIdAsync(UserID).Result;
-
             return View();
         }
 
-        public IActionResult PersonalInfo()
+        public async Task<IActionResult> Identification(string id)
         {
-            //ViewData["UserID"] = _userManager.GetUserId(this.User);
-            return View();
+           
+            if (User.IsInRole("Manager"))
+            {
+                return View();
+               
+            }
+            else
+            {
+                
+                var personalInfo = await _context.PersonalInfo
+                      .FirstOrDefaultAsync(m => m.UserId == id);
+                if (personalInfo == null)
+                {
+                    return RedirectToAction("Create", "PersonalInfo");
+                }
+                else
+                {
+                    ViewData["UserID"] = _userManager.GetUserId(this.User);
+                    return View(personalInfo);
+                }
+            }
+  
         }
-        public IActionResult Identification()
-        {
-            ViewData["UserID"] = _userManager.GetUserId(this.User);
-            //ViewData["UserID"] = _userManager.GetUserId(this.User);
-            return View();
-        }
-        public IActionResult AccountSetting()
-        {
-            //    ViewData["UserID"] = _userManager.GetUserId(this.User);
-            return View();
-        }
-        //public IActionResult StudentPersonalInfo()
-        //{
-        //    var dt = new DataTable();
-        //    dt = identification.GetStudentPersonalInfo();
 
-        //    string mimeType = "";
-        //    int extension = 1;
-        //    var path = $"{_webHostEnvironment.WebRootPath}\\Reports\\rptStudentPersonalInfo.rdlc";
+        public IActionResult Identifications(string studentid, string firstname, string lastname, string section, string course, string yearlevel, string address, string contactnumber, string emergencycontact, string dateofbirth)
+        {
+            string id = studentid;
+            string fname = firstname;
+            string lname = lastname;
+            string sect = section;
+            string crs = course;
+            string yl = yearlevel;
+            string add = address;
+            string contactnum = contactnumber;
+            string econtact = emergencycontact;
+            string dob = dateofbirth;
 
-        //}
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
+            string mimeType = "";
+            int extension = 1;
+            var path = $"{this._webHostEnvironment.WebRootPath}\\Reports\\rptStudentID.rdlc";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("studIDNumber", id);
+            parameters.Add("studFirstName", fname);
+            parameters.Add("studLastName", lname);
+            parameters.Add("studDateOfBirth", dob);
+            parameters.Add("studAddress", add);
+            parameters.Add("EmergencyContactNumber", contactnum);
+            parameters.Add("studEmergencyContact", econtact);
+            LocalReport localReport = new LocalReport(path);
+            var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
+            return File(res.MainStream, "application/pdf");
+        }
     }
 }

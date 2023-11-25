@@ -12,10 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Reports\rptStudentID.rdlc" />
     <Content Remove="wwwroot\Reports\rptStudentPersonalInfo.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="wwwroot\Reports\rptStudentID.rdlc" />
     <EmbeddedResource Include="wwwroot\Reports\rptStudentPersonalInfo.rdlc" />
   </ItemGroup>
 
