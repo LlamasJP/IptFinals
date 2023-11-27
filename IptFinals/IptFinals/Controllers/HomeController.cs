@@ -12,6 +12,9 @@ using System.Data.SqlClient;
 using AspNetCore.Reporting;
 using IptFinals.ViewModels;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication;
 
 namespace IptFinals.Controllers
 {
@@ -95,6 +98,36 @@ namespace IptFinals.Controllers
             LocalReport localReport = new LocalReport(path);
             var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
             return File(res.MainStream, "application/pdf");
+        }
+
+        public async Task Login()
+        {
+            await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme, new AuthenticationProperties()
+            {
+                RedirectUri = Url.Action("GoogleResponse")
+            });
+        }
+
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var claims = result.Principal.Identities.FirstOrDefault().Claims.Select(claim => new
+            {
+                claim.Issuer,
+                claim.OriginalIssuer,
+                claim.Type,
+                claim.Value
+            });
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
+
+
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Register");
         }
     }
 }

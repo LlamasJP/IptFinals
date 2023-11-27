@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>f3dfa18c-0b01-4a30-b781-59a7c5c42a2c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,6 +28,7 @@
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.12" />

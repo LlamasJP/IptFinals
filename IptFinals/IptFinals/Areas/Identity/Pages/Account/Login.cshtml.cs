@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace IptFinals.Areas.Identity.Pages.Account
 {
@@ -104,5 +106,7 @@ namespace IptFinals.Areas.Identity.Pages.Account
             }
             return Page();
         }
+
+       
     }
 }

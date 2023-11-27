@@ -604,3 +604,4 @@ C:\Users\Llamas Fam\Documents\GitHub\IptFinals\IptFinals\IptFinals\obj\Debug\net
 C:\Users\Llamas Fam\Documents\GitHub\IptFinals\IptFinals\IptFinals\obj\Debug\net7.0\IptFinals.pdb
 C:\Users\Llamas Fam\Documents\GitHub\IptFinals\IptFinals\IptFinals\obj\Debug\net7.0\IptFinals.genruntimeconfig.cache
 C:\Users\Llamas Fam\Documents\GitHub\IptFinals\IptFinals\IptFinals\obj\Debug\net7.0\ref\IptFinals.dll
+C:\Users\Llamas Fam\Documents\GitHub\IptFinals\IptFinals\IptFinals\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Google.dll
