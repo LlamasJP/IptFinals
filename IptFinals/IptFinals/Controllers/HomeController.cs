@@ -15,6 +15,9 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace IptFinals.Controllers
 {
@@ -47,15 +50,26 @@ namespace IptFinals.Controllers
 
         public async Task<IActionResult> Identification(string id)
         {
-           
+
             if (User.IsInRole("Manager"))
             {
-                return View();
-               
+                var personalInfo = await _context.PersonalInfo
+                     .FirstOrDefaultAsync(m => m.PersonalId == id);
+                if (personalInfo == null)
+                {
+                    return RedirectToAction("Index", "PersonalInfo");
+                }
+                else
+                {
+                    return View(personalInfo);
+                }
+                  
+
+
             }
             else
             {
-                
+
                 var personalInfo = await _context.PersonalInfo
                       .FirstOrDefaultAsync(m => m.UserId == id);
                 if (personalInfo == null)
@@ -68,10 +82,12 @@ namespace IptFinals.Controllers
                     return View(personalInfo);
                 }
             }
-  
+
         }
 
-        public IActionResult Identifications(string studentid, string firstname, string lastname, string section, string course, string yearlevel, string address, string contactnumber, string emergencycontact, string dateofbirth)
+
+
+        public IActionResult Identifications(string studentid, string firstname, string lastname, string section, string course, string yearlevel, string address, string contactnumber, string emergencycontact, string dateofbirth, string studImage)
         {
             string id = studentid;
             string fname = firstname;
@@ -84,6 +100,20 @@ namespace IptFinals.Controllers
             string econtact = emergencycontact;
             string dob = dateofbirth;
 
+
+            string Imageparam = "";
+            var imagepath = $"{this._webHostEnvironment.WebRootPath}\\images\\" + studImage;
+
+            using (var b = new Bitmap(imagepath))
+            {
+                using (var ms = new MemoryStream())
+                {
+                    b.Save(ms, ImageFormat.Bmp);
+                    Imageparam = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+
+
             string mimeType = "";
             int extension = 1;
             var path = $"{this._webHostEnvironment.WebRootPath}\\Reports\\rptStudentID.rdlc";
@@ -93,12 +123,16 @@ namespace IptFinals.Controllers
             parameters.Add("studLastName", lname);
             parameters.Add("studDateOfBirth", dob);
             parameters.Add("studAddress", add);
+            parameters.Add("studCourse", crs);
             parameters.Add("EmergencyContactNumber", contactnum);
             parameters.Add("studEmergencyContact", econtact);
+            parameters.Add("studImage", Imageparam);
             LocalReport localReport = new LocalReport(path);
             var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
             return File(res.MainStream, "application/pdf");
         }
+
+      
 
         public async Task Login()
         {
@@ -122,12 +156,12 @@ namespace IptFinals.Controllers
             return RedirectToAction("Index", "Home", new { area = "" });
         }
 
-
-
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
             return RedirectToAction("Register");
         }
+
+  
     }
 }

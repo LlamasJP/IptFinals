@@ -6,15 +6,13 @@ a.navbar-brand {
   text-align: center;
   word-break: break-all;
 }
-
-a {
-  color: #0077cc;
-}
-
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+.header{
+    background-color: aqua;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -26,6 +24,7 @@ a {
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
 }
@@ -46,3 +45,4 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+

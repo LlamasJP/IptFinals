@@ -5,94 +5,106 @@
     Layout = "~/Views/Shared/_SidebarLayout.cshtml";
 }
 
-<h1>Details</h1>
+
 
  @if (User.IsInRole("Manager"))
     {
-    <div>
-    <h4>PersonalInfo</h4>
-    <hr />
-    <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.StudentId)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.StudentId)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.FirstName)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.FirstName)
-            </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Section)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Section)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Course)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Course)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.YearLevel)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.YearLevel)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateOfBirth)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContactNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContactNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmergencyContact)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmergencyContact)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.PersonalId">Edit</a> |
-    <a asp-action="Index">Back to List</a> |
-        <a asp-action="GenerateID" asp-route-id="@Model.PersonalId">Print</a> |
-    </div>
+            <div style="width: 1380px; height: 600px; padding-left: 30px; padding-right: 30px; padding-top: 20px; margin-top: 100px; margin-bottom: 100px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25)">
+                <h1>Details</h1>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                    <input asp-for="StudentId" class="form-control" autocomplete="lastname" aria-required="true" placeholder="Last name" value="@Model.StudentId" disabled />
+                            <label asp-for="StudentId">Student-Id (Format: 00-0000)</label>
+                            <span asp-validation-for="StudentId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                        <input asp-for="FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" value="@Model.FirstName" disabled />
+                                <label asp-for="FirstName">First Name</label>
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                        <input asp-for="LastName" class="form-control" autocomplete="lastname" aria-required="true" placeholder="Last name" value="@Model.LastName" disabled />
+                                <label asp-for="LastName">Last Name</label>
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-floating mb-3">
+                        <input asp-for="Section" class="form-control" autocomplete="section" aria-required="true" placeholder="BSIT" value="@Model.Section" disabled />
+                                <label asp-for="Section">Section</label>
+                                <span asp-validation-for="Section" class="text-danger"></span>
+                            </div>
+                        </div><div class="col-sm">
+                            <div class="form-floating mb-3">
+                        <input asp-for="Course" class="form-control" autocomplete="course" aria-required="true" placeholder="Course" value="@Model.Course" disabled />
+                                <label asp-for="Course">Course</label>
+                                <span asp-validation-for="Course" class="text-danger"></span>
+                            </div>
+                        </div><div class="col-sm">
+                            <div class="form-floating mb-3">
+                        <input asp-for="YearLevel" class="form-control" autocomplete="yearlevel" aria-required="true" placeholder="Year Level" value="@Model.YearLevel" disabled />
+                                <label asp-for="YearLevel">Year Level</label>
+                                <span asp-validation-for="YearLevel" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                        <input asp-for="ContactNumber" class="form-control" autocomplete="contactnumber" aria-required="true" placeholder="Contact Number" type="number" value="@Model.ContactNumber" disabled />
+                                <label asp-for="ContactNumber">Contact Number</label>
+                                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                        <input asp-for="DateOfBirth" class="form-control" autocomplete="dateofbirth" aria-required="true" placeholder="Date Of Birth" value="@Model.DateOfBirth" disabled />
+                                <label asp-for="DateOfBirth">Date of Birth</label>
+                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                <input asp-for="Address" class="form-control" autocomplete="address" aria-required="true" placeholder="Address" value="@Model.Address" disabled />
+                        <label asp-for="Address">Address</label>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                <input asp-for="EmergencyContact" class="form-control" autocomplete="emergencycontact" aria-required="true" placeholder="Emergency Contact" value="@Model.EmergencyContact"  disabled />
+                        <label asp-for="EmergencyContact">Emergency Contact</label>
+                        <span asp-validation-for="EmergencyContact" class="text-danger"></span>
+                    </div>
+            <div class="form-group" style=" margin-left: 500px; margin-top: 10px;">
+                <a class="btn btn-primary" asp-action="Edit"  asp-route-id="@Model.PersonalId"> <i class="bi bi-pencil-square"></i> Edit</a>
+                <a class="btn btn-primary" asp-action="Index">Back to List <i class="bi bi-arrow-left"></i> </a>
+                <a class="btn btn-primary" asp-action="Identification" asp-controller="Home"  asp-route-id="@Model.PersonalId">  <i class="bi bi-printer-fill"></i> Print Record</a>
+            </div>
+     </div>
+     </div>
 }
 else 
 
 {
+    <div style="width: 1380px; height: 600px; padding-left: 30px; padding-right: 30px; padding-top: 20px; margin-top: 100px; margin-bottom: 100px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25)">
+        <h1>Personal Information</h1>
     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
 <div class="form-floating mb-3">
     <input asp-for="UserId" class="form-control" placeholder="" value="@Model.UserId" hidden />
-@*     <label asp-for="UserId" class="form-label"> User ID</label> *@
+
 </div>
 <div class="row">
     <div class="form-floating mb-3">
         <input asp-for="PersonalId" class="form-control" placeholder="Student Id." value="@Model.PersonalId" hidden />
-      @*   <label asp-for="PersonalId" class="form-label">Personal ID</label> *@
+
     </div>
     </div>
     <div class="col-6">
@@ -165,5 +177,9 @@ else
         <label asp-for="EmergencyContact">Emergency Contact</label>
         <span asp-validation-for="EmergencyContact" class="text-danger"></span>
     </div>
-    <a id="registerSubmit" class="w-100 btn btn-lg btn-primary" asp-action="Edit" asp-route-id="@Model.PersonalId">Edit</a>
+
+        <a id="registerSubmit" class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.PersonalId" style="margin-left: 600px; margin-top: 1px;">
+            <i class="bi bi-pencil-square"></i>Edit
+        </a>
+    </div>
 }

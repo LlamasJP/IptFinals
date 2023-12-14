@@ -105,7 +105,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Id</Value>
+                                  <Value>Student Id</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -608,7 +608,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>dsStudentPersonalInfo</DataSetName>
-            <Top>0.16542in</Top>
+            <Top>0.2175in</Top>
+            <Left>0.70709in</Left>
             <Height>0.5in</Height>
             <Width>6.02083in</Width>
             <Style>

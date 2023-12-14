@@ -24,7 +24,6 @@ namespace IptFinals.Controllers
     public class PersonalInfoController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        //private readonly ILogger<PersonalInfoController> _logger;
         private readonly UserManager<IptUser> _userManager;
         private readonly IptDbContext _context;
 
@@ -32,20 +31,27 @@ namespace IptFinals.Controllers
 
         public PersonalInfo personalinfo = new PersonalInfo();
 
-        public PersonalInfoController(IptDbContext context, UserManager<IptUser> userManager, IWebHostEnvironment webHostEnvironment) //* ILogger<PersonalInfoController> logger,*, IWebHostEnvironment webHostEnvironment)
+        public PersonalInfoController(IptDbContext context, UserManager<IptUser> userManager, IWebHostEnvironment webHostEnvironment) 
         {
-            //_logger = logger;
             this._userManager = userManager;
             _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
 
         [Authorize(Roles = "Manager")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searching)
         {
-              return _context.PersonalInfo != null ? 
-                          View(await _context.PersonalInfo.ToListAsync()) :
-                          Problem("Entity set 'IptDbContext.PersonalInfo'  is null.");
+            if (searching == null)
+            {
+                return _context.PersonalInfo != null ?
+                       View(await _context.PersonalInfo.ToListAsync()) :
+                       Problem("Entity set 'IptDbContext.PersonalInfo'  is null.");
+            }
+            else
+            {
+                return View(_context.PersonalInfo.Where(p => p.StudentId.Contains(searching) || searching == null).ToList());
+            }
+           
         }
 
         // GET: PersonalInfo/Details/5
@@ -82,7 +88,6 @@ namespace IptFinals.Controllers
         }
         public IActionResult Create()
         {
-
             ViewData["UserID"] = _userManager.GetUserId(this.User);
             return View();
         }
@@ -90,28 +95,23 @@ namespace IptFinals.Controllers
    
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonalId,,StudentId,UserId,FirstName,LastName,Section,Course,YearLevel,ContactNumber,DateOfBirth,Address,EmergencyContact")] PersonalInfo personalInfo)
+        public async Task<IActionResult> Create([Bind("PersonalId,StudentId,UserId,FirstName,LastName,Section,Course,YearLevel,Address,DateOfBirth,ContactNumber,EmergencyContact")] PersonalInfo personalInfo)
         {
              if (ModelState.IsValid)
             {
                 _context.Add(personalInfo);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
-            return View(personalInfo);
+            return RedirectToAction("Details", "PersonalInfo");
         }
-
-
-
         public async Task<IActionResult> Edit(string id)
         {
-
             if (User.IsInRole("Manager")) {
                 if (id == null || _context.PersonalInfo == null)
                 {
                     return NotFound("No UserId");
                 }
-
                 var personalInfo = await _context.PersonalInfo.FindAsync(id);
                 if (personalInfo == null)
                 {
@@ -124,9 +124,8 @@ namespace IptFinals.Controllers
                 ViewData["UserID"] = _userManager.GetUserId(this.User);
                 if (id == null || _context.PersonalInfo == null)
                 {
-                    return NotFound("No UserId");
+                    return RedirectToAction("Create", "PersonalInfo");
                 }
-
                 var personalInfo = await _context.PersonalInfo.FindAsync(id);
                 if (personalInfo == null)
                 {
@@ -142,8 +141,7 @@ namespace IptFinals.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("StudentId,PersonalId,UserId,FirstName,LastName,Section,Course,YearLevel,Address,DateOfBirth,ContactNumber,EmergencyContact")] PersonalInfo personalInfo)
-        {
-            
+        {          
             if (User.IsInRole("Manager"))
             {
                 if (id != personalInfo.PersonalId)
@@ -173,13 +171,11 @@ namespace IptFinals.Controllers
             } 
             else
             {
-
                 ViewData["UserID"] = _userManager.GetUserId(this.User);
                 if (id != personalInfo.PersonalId)
                 {
                     return NotFound("No user");
-                }
-
+                }            
                 if (ModelState.IsValid)
                 {
                     try
@@ -192,22 +188,23 @@ namespace IptFinals.Controllers
                     {
                         if (!PersonalInfoExists(personalInfo.PersonalId))
                         {
-                            return NotFound("Success");
+                            return NotFound();
                         }
                         else
                         {
                             throw;
                         }
                     }
-                    //ViewBag.Message = "Successfully Change";
-                    return RedirectToAction(nameof(Edit));
-                    
+
+                    return RedirectToAction("Index", "Home");
+
                 }
             }
             return View(personalInfo);
         }
 
         // GET: PersonalInfo/Delete/5
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.PersonalInfo == null)

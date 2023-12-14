@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\PersonalInfoes1\**" />
+    <Content Remove="Views\PersonalInfoes1\**" />
+    <EmbeddedResource Remove="Views\PersonalInfoes1\**" />
+    <None Remove="Views\PersonalInfoes1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Migrations\20231108112751_Initial Create.cs" />
     <Compile Remove="Migrations\20231108112751_Initial Create.Designer.cs" />
   </ItemGroup>

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Manage.Internal;
+using System.Web;
 
 namespace IptFinals.Models
 {
@@ -71,28 +72,10 @@ namespace IptFinals.Models
         public string EmergencyContact { get; set; }
         //[StringLength(450)]
 
-        string constr = "Data Source=DESKTOP-FAE0OA1; Initial Catalog=IptFinalsDB;User ID=sa; Password=123456789";
-        //public PersonalInfo GetStudentId(string Id)
-        //{
-        //    using (SqlConnection con = new SqlConnection(constr))
-        //    {
-        //        string sqlQuery = "SELECT * FROM PersonalInfo Where PersonalId=@Id";
-        //        SqlCommand cmd = new SqlCommand(sqlQuery, con);
-        //cmd.Parameters.Add("@Id", System.Data.SqlDbType.NVarChar).Value = Id;
-        //        con.Open();
-        //        SqlDataReader reader = cmd.ExecuteReader();
+        //[DataType(DataType.ImageUrl)]
+        //[Display(Name = "StudentImage")]
+        //public string StudentImage { get; set; }
 
-        //        PersonalInfo personal = new PersonalInfo();
-
-        //                personal.StudentId = reader.GetString(1);
-        //                personal.FirstName = reader.GetString(2);
-        //                personal.LastName = reader.GetString(3);
- 
-        //        con.Close();
-        //        return personal;
-        //    }
-           
-        //}
     }
 }
 

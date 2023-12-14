@@ -31,7 +31,7 @@
                     </label>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary" style=" background: blue; border: none; color: white">Log in</button>
                 </div>
                 @* <div>
                     <p>
@@ -50,7 +50,12 @@
     <div class="col-md-6 col-md-offset-2">
         <section>
             @{
-                <hr />
+                <div style="width: 100%; height: 100%; position: relative">
+                    <div style="width: 327px; height: 0px; left: -70px; top: 21.71px; position: absolute; border: 2px #D0D0D0 solid"></div>
+                    <div style="width: 44px; height: 32px; left: 68px; top: 4px; position: absolute; background: white"></div>
+                    <div style="width: 34px; height: 41px; left: 80px; top: 8px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">or</div>
+                </div>
+       
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
                     <div>
@@ -62,12 +67,14 @@
                 }
                 else
                 {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal" >
                         <div>
                             <p>
                                 @foreach (var provider in Model.ExternalLogins!)
                                 {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"> Continue with @provider.DisplayName</button>
+
+                                    <button type="submit" class="btn btn-primary" style="width: 110%; height: 100%; background: #3C5171; border-radius: 10px; margin-top: 50px; color: white" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="bi bi-google" style="padding-right: 10px"></i>     Log in with @provider.DisplayName</button>
+                                 
                                 }
                             </p>
                         </div>

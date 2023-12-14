@@ -17,65 +17,88 @@
     }
     else if (User.IsInRole("Student"))
     {
-        <h1>Hi Student</h1>
-
-        <nav id="sidebarMenu" class="sidebar sidebar-expand-sm sidebar-toggleable-sm sidebar-light bg-white border-bottom box-shadow mb-3">
-            <div class="position-sticky">
-                <div class="maindashboard">
-
+        <nav id="sidebarMenu" class="sidebar sidebar-expand-sm sidebar-toggleable-sm sidebar-light bg-white border-bottom box-shadow mb-3" style="height: 100%">
+                <div class="maindashboardStudent">
                     <div class="list-group list-group-flush mx-3 mt-4">
-                        <a class="list-group-item list-group-item-action py-2 ripple" href="/PersonalInfo/Details/@ViewData["UserID"]">
-                            <span>Dashboard</span>
+                        <h1>Hello, Student</h1>
+                    <div id="nav-link-button" style="border: 1px #AFAFAF solid">
+                         <a id="1" class="nav-link active" href="/Home/Index">
+                        <i class="bi bi-house-door-fill"></i> <span>Home</span>
                         </a>
-                        <a class="nav-link list-group-item list-group-item-action py-2 ripple" href="/Home/Identification/@ViewData["UserID"]">
-                            <span>Identification</span>
+                        <a id="1" class="nav-link" href="/PersonalInfo/Details/@ViewData["UserID"]">
+                        <i class="bi bi-file-person"></i> <span>Personal Info</span>
                         </a>
-                        <a class="nav-link list-group-item list-group-item-action py-2 ripple" href="/Identity/Account/Manage/Index">
-                            <span>Manage Account</span>
+                        <a id="1" class="nav-link" href="/Home/Identification/@ViewData["UserID"]">
+                        <i class="bi bi-person-vcard-fill"></i> <span>Identification</span>
+                        </a>
+                        <a id="1" class="nav-link" href="/Identity/Account/Manage/Index">
+                        <i class="bi bi-person-fill-gear"></i>  <span>Manage Account</span>
                         </a>
                     </div>
+                    <div class="nav-item">
+                        <form id="logoutForm" style="padding-left: 80px; padding-top: 300px" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button type="submit" class="nav-link btn1 btn-link " style="color: red; font-size: 25px;  font-family: Inter; font-weight: 400; word-wrap: break-word">Logout <i class="bi bi-box-arrow-right" style="padding-left: 2px; color: red;"></i></button>
+                        </form>
+
+                    </div>
+                    </div>
+            
                     <div class="row justify-content-center">
                         <div class="col-10 my-10">
                             @RenderBody()
+                        @RenderSection("Scripts", required: false)
                         </div>
                     </div>
                 </div>
-            </div>
         </nav>
+
+
     }
+
     else
     {
-        <h1>Hi Manager</h1>
 
-        <nav id="sidebarMenu" class="sidebar sidebar-expand-sm sidebar-toggleable-sm sidebar-light bg-white border-bottom box-shadow mb-3">
-            <div class="position-sticky">
-                <div class="maindashboard">
 
+        <nav id="sidebarMenu" class="sidebar sidebar-expand-sm sidebar-toggleable-sm sidebar-light bg-white border-bottom box-shadow mb-3" style="height: 100%">
+                <div class="maindashboardAdmin" >
+                    
                     <div class="list-group list-group-flush mx-3 mt-4">
-                        <a class="list-group-item list-group-item-action py-2 ripple" href="/PersonalInfo/Index">
-                            <span>Student List</span>
+                        <h1>Hi Manager</h1>
+                    <div id="nav-link-button" style=" border: 1px #AFAFAF solid">
+                        <a class="nav-link " href="/Home/Index">
+                            <i class="bi bi-house-door-fill"></i> <span>Home</span>
                         </a>
-                        <a class="nav-link list-group-item list-group-item-action py-2 ripple" href="/PersonalInfo/Create">
-                            <span>Add New Student</span>
+                        <a class="nav-link" href="/PersonalInfo/Index">
+                            <i class="bi bi-mortarboard"></i> <span>Student List</span>
                         </a>
-                        <a class="nav-link list-group-item list-group-item-action py-2 ripple" href="/Home/Identification">
-                            <span>Identification</span>
+                        <a class="nav-link" href="/Home/Identification">
+                            <i class="bi bi-person-vcard-fill"></i> <span>Identification</span>
                         </a>
-                        <a class="nav-link list-group-item list-group-item-action py-2 ripple" href="/Identity/Account/Manage/Index">
-                            <span>Manage Account</span>
+                        <a class="nav-link" href="/Identity/Account/Manage/Index">
+                            <i class="bi bi-person-fill-gear"></i>  <span>Manage Account</span>
                         </a>
+                         </div>
+                    <div class="nav-item" >
+                        <form id="logoutForm" style=" color: red; padding-left: 80px; padding-top: 300px" class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button id="logout" type="submit" class="nav-link btn1 btn-link " style="color: red; font-size: 25px; font-family: Inter; font-weight: 400; word-wrap: break-word">Logout <i class="bi bi-box-arrow-right" style="padding-left: 2px; color: red;"></i></button>
+                        </form>
+
                     </div>
-                    <div class="row justify-content-center">
+                    </div>
+                
+
+                <div class="row justify-content-center">
                         <div class="col-10 my-10">
                             @RenderBody()
+                        @RenderSection("Scripts", required: false)
                         </div>
                     </div>
                 </div>
-            </div>
         </nav>
     }
    
 
    
 </header>
+
 

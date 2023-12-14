@@ -28,7 +28,7 @@ namespace IptFinals.Controllers
 
         public IdentificationModel identification = new IdentificationModel();
         public string PersonalId { get; set; }
-        public ReportController(ILogger<ReportController> logger, IWebHostEnvironment webHostEnvironment, IptDbContext context /*UserManager<PersonalInfo> userManager*/)
+        public ReportController(ILogger<ReportController> logger, IWebHostEnvironment webHostEnvironment, IptDbContext context )
         {
             _logger = logger;
             _webHostEnvironment = webHostEnvironment;
@@ -62,7 +62,6 @@ namespace IptFinals.Controllers
 
             var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
             return File(res.MainStream, "application/pdf");
-            //return View();
         }
     }
 }

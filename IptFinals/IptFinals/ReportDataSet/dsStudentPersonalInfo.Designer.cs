@@ -279,7 +279,7 @@ namespace IptFinals.ReportDataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class dsStudentPersonalInfoDataTable : global::System.Data.TypedTableBase<dsStudentPersonalInfoRow> {
             
-            private global::System.Data.DataColumn columnId;
+            private global::System.Data.DataColumn columnStudentId;
             
             private global::System.Data.DataColumn columnFirstName;
             
@@ -330,9 +330,9 @@ namespace IptFinals.ReportDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IdColumn {
+            public global::System.Data.DataColumn StudentIdColumn {
                 get {
-                    return this.columnId;
+                    return this.columnStudentId;
                 }
             }
             
@@ -429,10 +429,10 @@ namespace IptFinals.ReportDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public dsStudentPersonalInfoRow AdddsStudentPersonalInfoRow(string Id, string FirstName, string LastName, string Section, string Course, string YearLevel, string Address, string EmergencyContact) {
+            public dsStudentPersonalInfoRow AdddsStudentPersonalInfoRow(string StudentId, string FirstName, string LastName, string Section, string Course, string YearLevel, string Address, string EmergencyContact) {
                 dsStudentPersonalInfoRow rowdsStudentPersonalInfoRow = ((dsStudentPersonalInfoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Id,
+                        StudentId,
                         FirstName,
                         LastName,
                         Section,
@@ -462,7 +462,7 @@ namespace IptFinals.ReportDataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnId = base.Columns["Id"];
+                this.columnStudentId = base.Columns["StudentId"];
                 this.columnFirstName = base.Columns["FirstName"];
                 this.columnLastName = base.Columns["LastName"];
                 this.columnSection = base.Columns["Section"];
@@ -475,8 +475,8 @@ namespace IptFinals.ReportDataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnId = new global::System.Data.DataColumn("Id", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId);
+                this.columnStudentId = new global::System.Data.DataColumn("StudentId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStudentId);
                 this.columnFirstName = new global::System.Data.DataColumn("FirstName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFirstName);
                 this.columnLastName = new global::System.Data.DataColumn("LastName", typeof(string), null, global::System.Data.MappingType.Element);
@@ -635,17 +635,17 @@ namespace IptFinals.ReportDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Id {
+            public string StudentId {
                 get {
                     try {
-                        return ((string)(this[this.tabledsStudentPersonalInfo.IdColumn]));
+                        return ((string)(this[this.tabledsStudentPersonalInfo.StudentIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Id\' in table \'dsStudentPersonalInfo\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'StudentId\' in table \'dsStudentPersonalInfo\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabledsStudentPersonalInfo.IdColumn] = value;
+                    this[this.tabledsStudentPersonalInfo.StudentIdColumn] = value;
                 }
             }
             
@@ -764,14 +764,14 @@ namespace IptFinals.ReportDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsIdNull() {
-                return this.IsNull(this.tabledsStudentPersonalInfo.IdColumn);
+            public bool IsStudentIdNull() {
+                return this.IsNull(this.tabledsStudentPersonalInfo.StudentIdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetIdNull() {
-                this[this.tabledsStudentPersonalInfo.IdColumn] = global::System.Convert.DBNull;
+            public void SetStudentIdNull() {
+                this[this.tabledsStudentPersonalInfo.StudentIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
