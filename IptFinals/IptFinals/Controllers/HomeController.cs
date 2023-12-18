@@ -104,6 +104,7 @@ namespace IptFinals.Controllers
 
 
             string Imageparam = "";
+           
             var imagepath = $"{this._webHostEnvironment.WebRootPath}\\images\\" + studImage;
 
             using (var b = new Bitmap(imagepath))
@@ -114,7 +115,6 @@ namespace IptFinals.Controllers
                     Imageparam = Convert.ToBase64String(ms.ToArray());
                 }
             }
-
 
             string mimeType = "";
             int extension = 1;

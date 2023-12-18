@@ -47,8 +47,7 @@ namespace IptFinals.Controllers
             {
                 return _context.PersonalInfo != null ?
                        View(await _context.PersonalInfo.ToListAsync()) :
-                       Problem("Entity set 'IptDbContext.PersonalInfo'  is null.");
-                
+                       Problem("Entity set 'IptDbContext.PersonalInfo'  is null.");   
             }
             else
             {
