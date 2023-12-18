@@ -291,9 +291,7 @@ namespace IptFinals.ReportDataSet {
             
             private global::System.Data.DataColumn columnYearLevel;
             
-            private global::System.Data.DataColumn columnAddress;
-            
-            private global::System.Data.DataColumn columnEmergencyContact;
+            private global::System.Data.DataColumn columnDateOfBirth;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -378,17 +376,9 @@ namespace IptFinals.ReportDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn AddressColumn {
+            public global::System.Data.DataColumn DateOfBirthColumn {
                 get {
-                    return this.columnAddress;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn EmergencyContactColumn {
-                get {
-                    return this.columnEmergencyContact;
+                    return this.columnDateOfBirth;
                 }
             }
             
@@ -429,7 +419,7 @@ namespace IptFinals.ReportDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public dsStudentPersonalInfoRow AdddsStudentPersonalInfoRow(string StudentId, string FirstName, string LastName, string Section, string Course, string YearLevel, string Address, string EmergencyContact) {
+            public dsStudentPersonalInfoRow AdddsStudentPersonalInfoRow(string StudentId, string FirstName, string LastName, string Section, string Course, string YearLevel, string DateOfBirth) {
                 dsStudentPersonalInfoRow rowdsStudentPersonalInfoRow = ((dsStudentPersonalInfoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         StudentId,
@@ -438,8 +428,7 @@ namespace IptFinals.ReportDataSet {
                         Section,
                         Course,
                         YearLevel,
-                        Address,
-                        EmergencyContact};
+                        DateOfBirth};
                 rowdsStudentPersonalInfoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdsStudentPersonalInfoRow);
                 return rowdsStudentPersonalInfoRow;
@@ -468,8 +457,7 @@ namespace IptFinals.ReportDataSet {
                 this.columnSection = base.Columns["Section"];
                 this.columnCourse = base.Columns["Course"];
                 this.columnYearLevel = base.Columns["YearLevel"];
-                this.columnAddress = base.Columns["Address"];
-                this.columnEmergencyContact = base.Columns["EmergencyContact"];
+                this.columnDateOfBirth = base.Columns["DateOfBirth"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -487,10 +475,8 @@ namespace IptFinals.ReportDataSet {
                 base.Columns.Add(this.columnCourse);
                 this.columnYearLevel = new global::System.Data.DataColumn("YearLevel", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnYearLevel);
-                this.columnAddress = new global::System.Data.DataColumn("Address", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAddress);
-                this.columnEmergencyContact = new global::System.Data.DataColumn("EmergencyContact", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEmergencyContact);
+                this.columnDateOfBirth = new global::System.Data.DataColumn("DateOfBirth", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateOfBirth);
                 this.ExtendedProperties.Add("Generator_TablePropName", "_dsStudentPersonalInfo");
                 this.ExtendedProperties.Add("Generator_UserTableName", "dsStudentPersonalInfo");
             }
@@ -731,34 +717,17 @@ namespace IptFinals.ReportDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Address {
+            public string DateOfBirth {
                 get {
                     try {
-                        return ((string)(this[this.tabledsStudentPersonalInfo.AddressColumn]));
+                        return ((string)(this[this.tabledsStudentPersonalInfo.DateOfBirthColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Address\' in table \'dsStudentPersonalInfo\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DateOfBirth\' in table \'dsStudentPersonalInfo\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabledsStudentPersonalInfo.AddressColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string EmergencyContact {
-                get {
-                    try {
-                        return ((string)(this[this.tabledsStudentPersonalInfo.EmergencyContactColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EmergencyContact\' in table \'dsStudentPersonalInfo\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tabledsStudentPersonalInfo.EmergencyContactColumn] = value;
+                    this[this.tabledsStudentPersonalInfo.DateOfBirthColumn] = value;
                 }
             }
             
@@ -836,26 +805,14 @@ namespace IptFinals.ReportDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAddressNull() {
-                return this.IsNull(this.tabledsStudentPersonalInfo.AddressColumn);
+            public bool IsDateOfBirthNull() {
+                return this.IsNull(this.tabledsStudentPersonalInfo.DateOfBirthColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAddressNull() {
-                this[this.tabledsStudentPersonalInfo.AddressColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsEmergencyContactNull() {
-                return this.IsNull(this.tabledsStudentPersonalInfo.EmergencyContactColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetEmergencyContactNull() {
-                this[this.tabledsStudentPersonalInfo.EmergencyContactColumn] = global::System.Convert.DBNull;
+            public void SetDateOfBirthNull() {
+                this[this.tabledsStudentPersonalInfo.DateOfBirthColumn] = global::System.Convert.DBNull;
             }
         }
         

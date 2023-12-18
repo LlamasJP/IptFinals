@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Hosting;
 using System.Data;
 using System.Data.SqlClient;
 using AspNetCore.Reporting.ReportExecutionService;
+using Microsoft.CodeAnalysis.Scripting;
+using static System.Collections.Specialized.BitVector32;
 
 namespace IptFinals.Controllers
 {
@@ -46,6 +48,7 @@ namespace IptFinals.Controllers
                 return _context.PersonalInfo != null ?
                        View(await _context.PersonalInfo.ToListAsync()) :
                        Problem("Entity set 'IptDbContext.PersonalInfo'  is null.");
+                
             }
             else
             {
@@ -53,6 +56,7 @@ namespace IptFinals.Controllers
             }
            
         }
+     
 
         // GET: PersonalInfo/Details/5
         public async Task<IActionResult> Details(string id)
@@ -90,6 +94,7 @@ namespace IptFinals.Controllers
         {
             ViewData["UserID"] = _userManager.GetUserId(this.User);
             return View();
+
         }
 
    

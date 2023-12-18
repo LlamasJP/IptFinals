@@ -9,13 +9,14 @@
     Layout = "~/Views/Shared/_SidebarLayout.cshtml";
 }
 
+
 @if (User.IsInRole("Manager"))
     {
     <div style="width: 1380px; height: 650px; padding-left: 30px; padding-right: 30px; padding-top: 20px; margin-top: 100px; margin-bottom: 100px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25)">
     <h1>Edit</h1>
     <hr />
     <div class="row">
-            <form asp-action="Edit">
+            <form asp-action="Edit" id="editForm" onsubmit="saveForm(event)">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
               
                     <div class="form-floating mb-3">
@@ -96,14 +97,35 @@
                     </div>
                 <div class="form-group">
 
-                    <button type="submit" class="btn btn-primary" value="Save" style="margin-left:520px; margin-top:10px; background: #3691FB; color: white; border: blue;">Save <i class="bi bi-floppy"></i></button>
+                    <button type="submit"  class="btn btn-primary" value="Save" style="margin-left:520px; margin-top:10px; background: #3691FB; color: white; border: blue;">Save <i class="bi bi-floppy"></i></button>
                     <a class="btn btn-primary" asp-action="Index" style="margin-top:10px;">Back to List <i class="bi bi-arrow-left"></i> </a>
                 </div>
             </form>
          
         </div>
     </div>
-
+    @section Scripts{
+    <script>
+        function saveForm(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Do you want to save changes?',
+                icon: "question",
+                showCancelButton: true,
+            }).then(result => {
+                if (result.isConfirmed) {
+                    const editForm = document.getElementById('editForm');
+                    editForm.submit();
+                    Swal.fire({
+                        icon: "success",
+                        title: 'Your changes has been saved',
+                        showConfirmButton: true
+                    })
+                }
+            })
+        }
+    </script>
+    }
         
 }
 else
@@ -111,7 +133,7 @@ else
     <div style="width: 1380px; height: 650px; padding-left: 30px; padding-right: 30px; padding-top: 20px; margin-top: 100px; margin-bottom: 100px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25)">
     <h1>Edit</h1>
     <hr />
-     <form asp-action="Edit">
+        <form asp-action="Edit" id="editForm" onsubmit="saveForm(event)">
 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
 <div class="form-floating mb-3">
     <input asp-for="UserId" class="form-control" placeholder="" value="@Model.UserId"  hidden/>
@@ -193,4 +215,28 @@ else
             <a class="btn btn-primary" href="/PersonalInfo/Details/@ViewData["UserID"]" style=" margin-top: 10px">Back to Details</a>
     </form>
     </div>
+
+    @section Scripts{
+    <script>
+        function saveForm(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Your want to save changes?',
+                icon: "question",
+                showCancelButton: true,
+            }).then(result => {
+                if (result.isConfirmed) {
+                    const editForm = document.getElementById('editForm');
+                    editForm.submit();
+                    Swal.fire({
+                        icon: "success",
+                        title: 'Your work has been saved',
+                        showConfirmButton: true,
+                        timer: 2500
+                    })
+                }
+            })
+        }
+    </script>
+    }
 }

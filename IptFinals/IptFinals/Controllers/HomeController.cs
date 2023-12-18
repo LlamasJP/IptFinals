@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Drawing;
 using System.Drawing.Imaging;
 
+
 namespace IptFinals.Controllers
 {
     [Authorize]
@@ -74,6 +75,7 @@ namespace IptFinals.Controllers
                       .FirstOrDefaultAsync(m => m.UserId == id);
                 if (personalInfo == null)
                 {
+                    
                     return RedirectToAction("Create", "PersonalInfo");
                 }
                 else

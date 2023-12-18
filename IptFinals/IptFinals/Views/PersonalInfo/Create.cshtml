@@ -13,7 +13,7 @@
     <div style="width: 100%; height: 70%; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); padding-left: 30px; padding-right: 30px; padding-top: 30px; margin-top: 50px; margin-bottom: 100px;">
         <h2>Personal Information</h2>
         <hr />
-    <form asp-action="Create">
+        <form asp-action="Create" id="createForm" onsubmit="sendForm(event)">
         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
         <div class="form-floating mb-3">
             <input asp-for="UserId" class="form-control" placeholder="" value="@ViewData["UserId"]" hidden/>
@@ -98,7 +98,29 @@
 
     </form>
     </div>
-
+    @section Scripts{
+    <script>
+        function sendForm(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Do you want to save this inforamtion?',
+                icon: "question",
+                showCancelButton: true,
+            }).then(result => {
+                if (result.isConfirmed) {
+                    const createForm = document.getElementById('createForm');
+                    createForm.submit();
+                    Swal.fire({
+                        icon: "success",
+                        title: 'Your information has been saved',
+                        showConfirmButton: false,
+                        timer: 2500
+                    })
+                }
+            })
+        }
+    </script>
+    }
 }
 else
 {

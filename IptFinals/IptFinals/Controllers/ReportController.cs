@@ -53,8 +53,8 @@ namespace IptFinals.Controllers
             var path = $"{_webHostEnvironment.WebRootPath}\\Reports\\rptStudentPersonalInfo.rdlc";
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("prm1", "RDLC Report");
-            parameters.Add("prm2",DateTime.Now.ToString("dd-MMM-yyyy"));
+            parameters.Add("prm1", "Student Identification and Information");
+            parameters.Add("prm2", DateTime.Now.ToString("dd-MMM-yyyy"));
             parameters.Add("prm3", "Student Personal Info Report"); 
 
             LocalReport localReport = new LocalReport(path);

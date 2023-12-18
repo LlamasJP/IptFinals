@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "JxlOGnhFneCaBOyHoj0I3JeXz3RLqut6NHmTBLWXCr0=",
+  "Hash": "HEe0JcZtsX6cjEzC0+ktf2UzIC+MZRnk/VhOgqZ5wDE=",
   "Source": "IptFinals",
   "BasePath": "_content/IptFinals",
   "Mode": "Default",
@@ -1137,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\ID Template Design Front.png"
+    },
+    {
+      "Identity": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\wwwroot\\images\\kise.jpg",
+      "SourceId": "IptFinals",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\wwwroot\\",
+      "BasePath": "_content/IptFinals",
+      "RelativePath": "images/kise.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\kise.jpg"
     },
     {
       "Identity": "C:\\Users\\Llamas Fam\\Documents\\GitHub\\IptFinals\\IptFinals\\IptFinals\\wwwroot\\images\\material-symbols_send.png",

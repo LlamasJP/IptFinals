@@ -81,10 +81,33 @@
             <span asp-validation-for="EmergencyContact" class="text-danger"></span>
         </div>
     </div>
-    <form asp-action="Delete" >
+    <form asp-action="Delete" id="deleteForm" onsubmit="sendForm(event)" >
         <input type="hidden" asp-for="PersonalId" />
         <button type="submit" value="Delete" class="btn btn-danger" style="margin-left: 500px; margin-top: 10px; background: #E55869; color:white; border: red "> Delete <i class="bi bi-x-circle"></i> </button>
         <a class="btn btn-primary" asp-action="Index" style="margin-top:10px; background" >Back to List <i class="bi bi-arrow-left"></i> </a>
     </form>
     </div>
+
+@section Scripts{
+    <script>
+        function sendForm(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Your want to delete this info?',
+                icon: "question",
+                showCancelButton: true,
+            }).then(result => {
+                if (result.isConfirmed) {
+                    const deleteForm = document.getElementById('deleteForm');
+                    deleteForm.submit();
+                    Swal.fire({
+                        icon: "success",
+                        title: 'The Info has been deleted',
+                        confirmButtonText: "Ok"
+                    })
+                }
+            })
+        }
+    </script>
+    }
 
